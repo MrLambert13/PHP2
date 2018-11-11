@@ -7,14 +7,14 @@
  */
 
 class Product {
-  private $id = 0;
-  private $article;
-  private $group;
-  private $name;
-  private $description;
-  private $count;
-  private $price;
-  private $discount;
+  public $id;
+  public $article;
+  public $group;
+  public $name;
+  public $description;
+  public $count;
+  public $price;
+  public $discount;
 
   public function __construct(int $id, string $article, string $name, string $description, int $count, int $price, string $group) {
     $this->id = $id;
@@ -48,7 +48,7 @@ class Product {
 
   function getInfo() {
     echo "<h1>{$this->name}</h1>"
-      . "<h2>{$this->price}</h2>"
+      . "<h2>{$this->price} руб.</h2>"
       . "<h3>{$this->group}</h3>"
       . "<h3>Осталось: {$this->count} шт.</h3>"
       . "<p>{$this->discount}</p>";
