@@ -3,7 +3,6 @@
 abstract class Product {
   public $article;
   public $name;
-  public $count;
   public $price;
 
   public function __construct(int $article, string $name) {
@@ -16,9 +15,9 @@ abstract class Product {
     return $this->price;
   }
 
-  public function revenue() {
+  public function revenue($count) {
     $message = 'Выручка составила: ';
-    return $message . ($this->totalPrice() - $this->price);
+    return $message . ($this->totalPrice() * $count);
   }
 
 }
