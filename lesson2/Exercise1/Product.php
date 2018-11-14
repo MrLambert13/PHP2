@@ -9,6 +9,7 @@ abstract class Product {
   public function __construct(int $article, string $name) {
     $this->article = $article;
     $this->name = $name;
+    $this->price = 100;
   }
 
   public function totalPrice() {
