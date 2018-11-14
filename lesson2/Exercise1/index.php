@@ -1,6 +1,7 @@
 <?php
-require_once 'Product.php';
+require_once 'config.php';
 
+$obg1 = new Product();
 
 
 ?>

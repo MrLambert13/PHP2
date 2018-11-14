@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mrlambert13
- * Date: 09.11.18
- * Time: 14:17
- */
 
 class Product {
   public $id;
