@@ -3,20 +3,20 @@
 <h2>Current date {{ currentDate }}</h2>
 
 <p>
-    {% if error %}
-        <strong style="color: red">Color text</strong>
-    {% else %}
-        <strong style="color: green">Color text</strong>
-    {% endif %}
+  {% if error %}
+    <strong style="color: red">Color text</strong>
+  {% else %}
+    <strong style="color: green">Color text</strong>
+  {% endif %}
 </p>
 
 <h3>Users</h3>
 <ul>
-    {% for idx, user in users %}
+  {% for idx, user in users %}
     <li>{{ idx }} : {{ user['login'] }}</li>
     <li>{{ user.login | upper }}</li>
     {# strtoupper(user['login']) #}
-    {% endfor %}
+  {% endfor %}
 </ul>
 
 {{ dump(users) }}
