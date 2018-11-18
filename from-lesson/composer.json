@@ -1,20 +1,20 @@
 {
-    "name": "manchenkov/geek-framework",
-    "description": "Geekbrains PHP Level 2",
-    "type": "project",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Artem Manchenkov",
-            "email": "artyom@manchenkoff.me"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "App\\": "./app"
-        }
-    },
-    "require": {
-        "twig/twig": "^2.0"
+  "name": "manchenkov/geek-framework",
+  "description": "Geekbrains PHP Level 2",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Artem Manchenkov",
+      "email": "artyom@manchenkoff.me"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "./app"
+    }
+  },
+  "require": {
+    "twig/twig": "^2.0"
+  }
 }
