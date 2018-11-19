@@ -4,7 +4,7 @@ Twig_Autoloader::register();
 
 // подключение к бд
 try {
-  $dbh = new PDO('mysql:dbname=world;host=localhost', 'root', 'guessme');
+  $dbh = new PDO('mysql:dbname=world;host=localhost', 'root', '123456');
 } catch (PDOException $e) {
   echo "Error: Could not connect. " . $e->getMessage();
 }
