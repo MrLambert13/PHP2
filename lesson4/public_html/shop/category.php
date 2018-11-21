@@ -42,7 +42,7 @@ function routeView() {
   $id = $_GET['id'];
 
   $prods = getItemArray(
-    "select * from products where id_category={$id}"
+    "select * from products where id_category={$id} LIMIT 2"
   );
 
   echo render('shop/products', [
