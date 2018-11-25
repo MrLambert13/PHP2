@@ -10,9 +10,9 @@
  */
 return [
     'database' => [
-        'host' => 'db',
+        'host' => 'mrlambert.ru',
         'user' => 'root',
-        'password' => 'root',
-        'database' => 'geekbrains',
+        'password' => '123456',
+        'database' => 'geekbrains_project',
     ],
 ];

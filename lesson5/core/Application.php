@@ -19,12 +19,11 @@ use Twig_Loader_Filesystem;
  *
  * @package core
  *
- * @property Request $request
+ * @property Request    $request
  * @property Controller $controller
- * @property string $action
+ * @property string     $action
  */
-class Application
-{
+class Application {
     use Singleton;
 
     public $request;

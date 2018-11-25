@@ -6,6 +6,7 @@
  */
 
 use app\controllers\HomeController;
+use app\controllers\LoginController;
 
 /**
  * Настройки маршрутов приложения
@@ -15,6 +16,7 @@ return [
         //'website/path' => ['ControllerClass', 'actionName'],
 
         '/' => [HomeController::class, 'page'],
-        'home/{name}' => [HomeController::class, 'hello'],
+        'account' => [LoginController::class, 'account'],
+        'login' => [LoginController::class, 'login'],
     ],
 ];
