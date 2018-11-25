@@ -10,6 +10,9 @@
  */
 return [
     'database' => [
-        // settings
+        'host' => 'db',
+        'user' => 'root',
+        'password' => 'root',
+        'database' => 'geekbrains',
     ],
 ];

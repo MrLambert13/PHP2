@@ -10,6 +10,6 @@
  */
 return [
     'log' => [
-        // settings
+        'path' => '/runtime/logs',
     ],
 ];

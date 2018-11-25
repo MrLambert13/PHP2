@@ -5,11 +5,16 @@
  * manchenkoff.me © 2018
  */
 
+use app\controllers\HomeController;
+
 /**
  * Настройки маршрутов приложения
  */
 return [
     'routes' => [
-        // settings
+        //'website/path' => ['ControllerClass', 'actionName'],
+
+        '/' => [HomeController::class, 'page'],
+        'home/{name}' => [HomeController::class, 'hello'],
     ],
 ];

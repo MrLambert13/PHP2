@@ -17,16 +17,6 @@ trait Singleton
 
     private static $_instance;
 
-    private function __clone()
-    {
-        // proxy block
-    }
-
-    private function __wakeup()
-    {
-        // proxy block
-    }
-
     private function __construct()
     {
         // proxy block
@@ -34,7 +24,7 @@ trait Singleton
 
     /**
      * Возвращает всегда активный объект класса
-     * @return Singleton
+     * @return static
      */
     public static function getInstance()
     {
@@ -43,6 +33,16 @@ trait Singleton
         }
 
         return self::$_instance;
+    }
+
+    private function __clone()
+    {
+        // proxy block
+    }
+
+    private function __wakeup()
+    {
+        // proxy block
     }
 
 }
