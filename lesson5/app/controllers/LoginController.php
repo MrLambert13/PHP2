@@ -36,8 +36,8 @@ class LoginController extends Controller {
     public function account()
     {
         return $this->render('account', [
-                'name' => $this->request->session('user'),
-            ]);
+            'name' => $this->request->session('user'),
+        ]);
     }
 
 }
