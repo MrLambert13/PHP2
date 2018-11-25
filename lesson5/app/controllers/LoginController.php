@@ -10,10 +10,20 @@ namespace app\controllers;
 
 
 use core\base\Controller;
+use core\base\View;
+use core\Request;
 
 class LoginController extends Controller {
 
     private $_userName;
+
+    public function __construct(Request $request, View $view)
+    {
+        parent::__construct($request, $view);
+        //запись посещенной страницы в сессию
+        $_SESSION['URI'][] = $_SERVER['REDIRECT_URL'];
+
+    }
 
     public function login()
     {
@@ -37,6 +47,8 @@ class LoginController extends Controller {
     {
         return $this->render('account', [
             'name' => $this->request->session('user'),
+            //последние пять посященных страниц
+            'uri' => array_slice($_SESSION['URI'], -5),
         ]);
     }
 
