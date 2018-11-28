@@ -1,0 +1,13 @@
+{% extends '/layouts/default.twig' %}
+
+{% block content %}
+    <h2>Каталог:</h2>
+    <ul>
+        {% for elem in data %}
+            <li>
+                <a href="product/{{ elem.id }}" >{{ elem.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -16,8 +16,7 @@ class PageController extends Controller
      * Просмотр списка всех страниц сайта
      * @return string
      */
-    public function index()
-    {
+    public function index() {
         $pages = Page::all();
 
         return $this->render('index', [
@@ -32,8 +31,7 @@ class PageController extends Controller
      *
      * @return string
      */
-    public function show($id)
-    {
+    public function show($id) {
         // просмотр одной
         $page = Page::findById($id);
 
@@ -45,8 +43,7 @@ class PageController extends Controller
     /**
      * Добавление новой страницы
      */
-    public function add()
-    {
+    public function add() {
         // создание записи
         $page = new Page();
 

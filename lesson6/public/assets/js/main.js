@@ -1,6 +1,18 @@
-/*
- * Created by Artem Manchenkov
- * artyom@manchenkoff.me
- * manchenkoff.me © 2018
- */
-
+$(document).ready(function () {
+    $('#add-product').on('click', function () {
+        let id = $(this).data('id');
+        console.log(id);
+        $.ajax({
+            url: `/product/add`,
+            method: 'POST',
+            data: {
+                id: id,
+                quantity: 1
+            },
+            success: function (data) {
+                data = $.parseJSON(data);
+                console.log(data);
+            }
+        });
+    });
+});

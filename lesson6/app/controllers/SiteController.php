@@ -12,8 +12,7 @@ use core\base\Controller;
 
 class SiteController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         $user = new User();
 
         if ($this->request->isPost()) {
