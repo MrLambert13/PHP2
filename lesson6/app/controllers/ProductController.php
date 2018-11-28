@@ -36,10 +36,10 @@ class ProductController extends Controller
     }
 
     public function add() {
+
         if ($this->request->isAjax()) {
             $id = $this->request->post('id');
             $quantity = $this->request->post('quantity');
-
             if ($this->request->session('cart')) {
                 $exist = -1;
 
@@ -53,23 +53,23 @@ class ProductController extends Controller
                 if ($exist != -1) {
                     $_SESSION['cart']['items'][$exist]['quantity'] += $quantity;
 
-                    json_encode(
-                        array(
-                            'result' => 'OK',
-                            'status' => 'update',
-                            'errors' => null,
-                        )
-                    );
+                    $this->renderJson([
+                        'result' => 'OK',
+                        'status' => 'update',
+                        'errors' => null,
+                        'prod' => $_SESSION['cart'],
+                    ]);
                 } else {
                     $_SESSION['cart']['items'][] = [
                         'id' => $id,
                         'quantity' => $quantity,
                     ];
 
-                    renderJson([
+                    $this->renderJson([
                         'result' => 'OK',
                         'status' => 'new',
                         'errors' => null,
+                        'prod' => $_SESSION['cart'],
                     ]);
                 }
             } else {
@@ -79,16 +79,20 @@ class ProductController extends Controller
                     'quantity' => $quantity,
                 ];
 
-                renderJson([
+                $this->renderJson([
                     'result' => 'OK',
                     'status' => 'new',
                     'errors' => null,
+                    'prod' => $_SESSION['cart'],
                 ]);
             }
+//            session_destroy();
 
         }
-        var_dump($this->request->isAjax());
-        echo 'test';
-        var_dump($this->request->post());
+    }
+
+    function renderJson($data) {
+        header('Content-type: application/json');
+        echo json_encode($data);
     }
 }
