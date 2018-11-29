@@ -1,5 +1,11 @@
+{% extends '/layouts/default.twig' %}
+
+{% block content %}
+
 <form method="post">
     <input name="user" type="text" placeholder="Имя пользователя">
     <input name="pass" type="password" placeholder="Пароль">
     <button type="submit">Вход</button>
 </form>
+
+{% endblock %}

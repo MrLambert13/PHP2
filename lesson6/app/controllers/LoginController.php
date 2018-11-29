@@ -39,6 +39,11 @@ class LoginController extends Controller
         }
     }
 
+    public function logout() {
+        session_destroy();
+        $this->request->redirect("/");
+    }
+
     private function checkUser() {
         $this->_userName = $this->request->post('user');
         $regUser = User::one(

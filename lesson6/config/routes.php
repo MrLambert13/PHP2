@@ -26,6 +26,7 @@ return [
         '/' => [HomeController::class, 'page'],
         'account' => [LoginController::class, 'account'],
         'login' => [LoginController::class, 'login'],
+        'logout' => [LoginController::class, 'logout'],
         'product' => [ProductController::class, 'index' ],
         'product/add' => [ProductController::class, 'add' ],
         'product/{id}' => [ProductController::class, 'one' ],

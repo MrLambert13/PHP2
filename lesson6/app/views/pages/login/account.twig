@@ -1,3 +1,7 @@
+{% extends '/layouts/default.twig' %}
+
+{% block content %}
+
 <h2>Привет, {{ name }}. Ваш личный кабинет пока пустой ))) </h2>
     Последние 5 посященных страниц сайта:
     <ul>
@@ -6,4 +10,7 @@
         {% endfor %}
     </ul>
 
-<a href="/">Выход</a>
+<a href="logout">Выход</a>
+
+{% endblock %}
+
