@@ -31,8 +31,7 @@ abstract class ActiveRecord extends Model
      *
      * @return static
      */
-    public static function findById($id)
-    {
+    public static function findById($id) {
         $query = self::find()
             ->where(self::$primaryKey . " = :id")
             ->setParameter(':id', $id);
@@ -46,8 +45,7 @@ abstract class ActiveRecord extends Model
      * Построение запросов к БД при помощи QueryBuilder
      * @return QueryBuilder
      */
-    public static function find()
-    {
+    public static function find() {
         return self::getConnection()
             ->createQueryBuilder()
             ->select('*')
@@ -58,8 +56,7 @@ abstract class ActiveRecord extends Model
      * Соединение с базой данных
      * @return \Doctrine\DBAL\Connection
      */
-    private static function getConnection()
-    {
+    private static function getConnection() {
         return Application::getInstance()->connection;
     }
 
@@ -67,8 +64,7 @@ abstract class ActiveRecord extends Model
      * Преобразование названия класса в название таблицы в БД
      * @return null|string|string[]
      */
-    protected static function tableName()
-    {
+    protected static function tableName() {
         $className = parent::modelName();
 
         // UserRole -> user_role
@@ -89,8 +85,7 @@ abstract class ActiveRecord extends Model
      *
      * @return static
      */
-    public static function one(QueryBuilder $query = null)
-    {
+    public static function one(QueryBuilder $query = null) {
         if (is_null($query)) {
             $query = self::find();
         }
@@ -107,8 +102,7 @@ abstract class ActiveRecord extends Model
      *
      * @return \Doctrine\DBAL\Driver\Statement|int
      */
-    private static function prepareToFetch(QueryBuilder $builder)
-    {
+    private static function prepareToFetch(QueryBuilder $builder) {
         $statement = $builder->execute();
         $statement->setFetchMode(FetchMode::CUSTOM_OBJECT, static::class);
 
@@ -122,8 +116,7 @@ abstract class ActiveRecord extends Model
      *
      * @return static[]
      */
-    public static function all(QueryBuilder $query = null)
-    {
+    public static function all(QueryBuilder $query = null) {
         if (is_null($query)) {
             $query = self::find();
         }
@@ -138,8 +131,7 @@ abstract class ActiveRecord extends Model
      * @return bool
      *
      */
-    public function save()
-    {
+    public function save() {
         try {
             $connection = $this->getConnection();
 
@@ -182,8 +174,7 @@ abstract class ActiveRecord extends Model
      * @return array
      * @throws \Doctrine\DBAL\DBALException
      */
-    private function tableColumns()
-    {
+    private function tableColumns() {
         $connection = $this->getConnection();
         $connection->setFetchMode(FetchMode::ASSOCIATIVE);
 
@@ -203,8 +194,7 @@ abstract class ActiveRecord extends Model
      * Новая или существующая запись в БД
      * @return bool
      */
-    private function isNewRecord()
-    {
+    private function isNewRecord() {
         return !isset($this->{self::$primaryKey});
     }
 
@@ -212,8 +202,7 @@ abstract class ActiveRecord extends Model
      * Извлекаем свойство первичного ключа
      * @return mixed|null
      */
-    private function getPrimaryKeyValue()
-    {
+    private function getPrimaryKeyValue() {
         return ($this->isNewRecord()) ? null : $this->{self::$primaryKey};
     }
 
@@ -223,8 +212,7 @@ abstract class ActiveRecord extends Model
      * @throws \Doctrine\DBAL\DBALException
      * @throws \Doctrine\DBAL\Exception\InvalidArgumentException
      */
-    public function delete()
-    {
+    public function delete() {
         if (!$this->isNewRecord()) {
             $connection = $this->getConnection();
 

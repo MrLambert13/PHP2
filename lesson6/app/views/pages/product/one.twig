@@ -1,0 +1,14 @@
+{% extends '/layouts/default.twig' %}
+
+{% block content %}
+    <h2>{{ data.name }}</h2>
+    <p>
+        Цена: {{ data.price }}
+    </p>
+    <pre>
+        {{ data.description }}
+    </pre>
+    <button class="btn btn-info" id="add-product" data-id="{{ data.id }}">
+        Добавить в корзину
+    </button>
+{% endblock %}
