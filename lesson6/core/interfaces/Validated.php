@@ -9,5 +9,5 @@ namespace core\interfaces;
 
 interface Validated
 {
-    public static function check($value) : bool;
+    public static function check($value): bool;
 }

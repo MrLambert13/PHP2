@@ -12,8 +12,7 @@ use core\services\validators\NumberValidator;
 
 class NumberValidatorTest extends TestCase
 {
-    public function numbersArray()
-    {
+    public function numbersArray() {
         return [
             [4],
             [8],
@@ -30,8 +29,7 @@ class NumberValidatorTest extends TestCase
     /**
      * @dataProvider numbersArray
      */
-    public function testCheck($number)
-    {
+    public function testCheck($number) {
         $this->assertTrue(
             NumberValidator::check($number)
         );

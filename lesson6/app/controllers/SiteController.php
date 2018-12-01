@@ -31,14 +31,16 @@ class SiteController extends Controller
                 ->setParameter(':id', 2)
         );
 
-       /* $user->id = 10;
-        $user->login = 'testtest';
+        //        var_dump($regUser);
+        //
+        //        $user->id = 10;
+        //        $user->login = 'testtest';
 
-        if ($user->validate()) {
-            echo 'OK';
-        } else {
-            var_dump($user->errors);
-        }*/
+        //        if ($user->validate()) {
+        //            echo 'OK';
+        //        } else {
+        //            var_dump($user->errors);
+        //        }
 
         return $this->render('index');
     }

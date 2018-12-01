@@ -20,6 +20,16 @@ abstract class Model extends BaseObject
     public $errors = [];
 
     /**
+     * Правила валидации
+     * ['user_name' => StringValidator::class]
+     * ['user_name' => 'string'] ===> StringValidator ...
+     * @return array
+     */
+    protected function validationRules() {
+        return [];
+    }
+
+    /**
      * Инициализация модели и атрибутов по умолчанию
      *
      * @param array|null $attributes
@@ -42,8 +52,8 @@ abstract class Model extends BaseObject
      */
     public function load(array $request)
     {
-        if (isset($request[self::modelName()])) {
-            $data = $request[self::modelName()];
+        if (isset($request[static::modelName()])) {
+            $data = $request[static::modelName()];
 
             foreach ($data as $attr => $value) {
                 $this->{$attr} = $value;
@@ -76,5 +86,21 @@ abstract class Model extends BaseObject
     public function addError(string $attribute, string $message)
     {
         $this->errors[$attribute] = $message;
+    }
+
+    public function validate() {
+        $status = true;
+        // user_name => string
+        // StringValidator::check(user_name)
+        foreach ($this->validationRules() as $attribute => $validator) {
+            $value = $this->{$attribute};
+
+            if (!$validator::check($value)) {
+                $this->addError($attribute, 'Invalid value!');
+                $status = false;
+            }
+        }
+
+        return $status;
     }
 }
