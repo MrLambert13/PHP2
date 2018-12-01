@@ -21,5 +21,11 @@ use core\base\ActiveRecord;
  */
 class User extends ActiveRecord
 {
-
+    protected function validationRules()
+    {
+        return [
+            'id' => NumberValidator::class,
+            'login' => LoginValidator::class,
+        ];
+    }
 }

@@ -5,8 +5,8 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Artem Manchenkov",
-      "email": "artyom@manchenkoff.me"
+      "name": "Sergey Berdnikov",
+      "email": "Lam_13@mail.ru"
     }
   ],
   "autoload": {
@@ -17,8 +17,9 @@
   },
   "require": {
     "twig/twig": "^2.0",
-    "doctrine/dbal": "^2.8",
-    "components/jquery": "^3.3",
-    "twbs/bootstrap-sass": "^3.3"
+    "doctrine/dbal": "^2.8"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7"
   }
 }
