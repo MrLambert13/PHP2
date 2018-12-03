@@ -30,7 +30,7 @@ return [
         'product' => [ProductController::class, 'index' ],
         'product/add' => [ProductController::class, 'add' ],
         'product/{id}' => [ProductController::class, 'one' ],
-        'cart' => [LoginController::class, 'showCart'],
+        'cart' => [LoginController::class, 'showcart'],
 
     ],
 ];

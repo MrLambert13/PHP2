@@ -1,0 +1,21 @@
+{% extends '/layouts/default.twig' %}
+
+{% block content %}
+    <h2>Корзина</h2>
+
+    {% if cart|length > 0 %}
+        <ul class="list-group my-5">
+            {% for item in cart %}
+                <li class="list-group-item">
+                    {{ item.name }} (количество: {{ item.quantity }})
+                    <a href="/product/{{ item.id }}">Посмотреть</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="#" class="btn btn-success">Оформить заказ</a>
+    {% else %}
+        <div class="my-5">
+            <em>В корзине пока ничего нет</em>
+        </div>
+    {% endif %}
+{% endblock %}
