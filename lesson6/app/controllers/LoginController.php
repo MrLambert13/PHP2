@@ -13,6 +13,7 @@ use core\base\Controller;
 use core\base\View;
 use core\Request;
 use app\models\User;
+use Product;
 
 class LoginController extends Controller
 {
@@ -76,19 +77,26 @@ class LoginController extends Controller
     /**
      * Отображение содержимого корзины
      */
-    private function routeIndex() {
+    public function showCart() {
         $orderItems = [];
+        $cart = $this->request->session('cart');
 
         // грузим элементы из сессии, если есть (с подгрузкой названия из БД)
-        if (isset($_SESSION['cart'])) {
-            foreach ($_SESSION['cart']['items'] as $item) {
-                $product = getItem("select `name` from products where id={$item['id']}");
-
+        if (isset($cart)) {
+            foreach ($cart['items'] as $item) {
+                $product = new \app\models\Product()
+                $product = Product::one(
+                    Product::find()
+                        ->where('id = :id')
+                        ->setParameter(':id', $item['id'])
+                );
+                var_dump($product);
                 $orderItems[] = [
                     'id' => $item['id'],
                     'name' => $product['name'],
                     'quantity' => $item['quantity'],
                 ];
+//                var_dump($orderItems);
             }
         }
 
