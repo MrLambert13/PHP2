@@ -10,8 +10,7 @@ $(document).ready(function () {
                 quantity: 1
             },
             success: function (data) {
-                // data = $.parseJSON(data);
-                console.log(data);
+                // console.log(data);
             }
         });
     });

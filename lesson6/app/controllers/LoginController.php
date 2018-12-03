@@ -27,7 +27,8 @@ class LoginController extends Controller
     }
 
     public function login() {
-        if (!$this->request->post('user')) {
+        if (!($this->isLoggedUser() || $this->request->post('user'))) {
+            echo 1;
             return $this->render('login');
         } else {
             if ($this->checkUser()) {
@@ -37,6 +38,16 @@ class LoginController extends Controller
             }
 
         }
+    }
+
+    /**
+     * Проверка авторизован ли пользователь
+     * @return bool
+     */
+    private function isLoggedUser() {
+        $auth = $this->request->post('auth');
+        print_r($auth);
+        return isset($auth['login']);
     }
 
     public function logout() {
@@ -52,15 +63,44 @@ class LoginController extends Controller
                 ->setParameter(':login', $this->_userName)
         );
         if ($regUser) {
-            $this->request->session('user', $this->_userName);
+            $auth = $this->request->session('auth');
+            $auth['id'] = $regUser->id;
+            $auth['login'] = $regUser->login;
+            $auth['userName'] = $regUser->username;
+            $this->request->session('auth', $auth);
             return true;
         }
         return false;
     }
 
+    /**
+     * Отображение содержимого корзины
+     */
+    private function routeIndex() {
+        $orderItems = [];
+
+        // грузим элементы из сессии, если есть (с подгрузкой названия из БД)
+        if (isset($_SESSION['cart'])) {
+            foreach ($_SESSION['cart']['items'] as $item) {
+                $product = getItem("select `name` from products where id={$item['id']}");
+
+                $orderItems[] = [
+                    'id' => $item['id'],
+                    'name' => $product['name'],
+                    'quantity' => $item['quantity'],
+                ];
+            }
+        }
+
+        echo render('shop/cart', [
+            'orderItems' => $orderItems,
+        ]);
+    }
+
     public function account() {
+        $auth = $this->request->session('auth');
         return $this->render('account', [
-            'name' => $this->request->session('user'),
+            'name' => $auth['login'],
             //последние пять посященных страниц
             'uri' => array_slice($_SESSION['URI'], -5),
         ]);
