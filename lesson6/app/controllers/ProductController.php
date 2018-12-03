@@ -35,60 +35,69 @@ class ProductController extends Controller
         ]);
     }
 
+    /**
+     * Добавление товара в корзину
+     */
     public function add() {
-
+        $cart = $this->request->session('cart');
         if ($this->request->isAjax()) {
             $id = $this->request->post('id');
             $quantity = $this->request->post('quantity');
-            if ($this->request->session('cart')) {
+
+            //Если корзина существует уже, то предположим что индекс товара = -1
+            if ($cart) {
                 $exist = -1;
 
-                // увеличиваем количество, если товар уже есть
-                foreach ($_SESSION['cart']['items'] as $index => $item) {
+                //если товар уже есть в корзине ищем его индекс
+                foreach ($cart['items'] as $index => $item) {
                     if ($item['id'] == $id) {
                         $exist = $index;
                     }
                 }
 
+                // Если нашли, то увеличиваем количество
                 if ($exist != -1) {
-                    $_SESSION['cart']['items'][$exist]['quantity'] += $quantity;
+                    $cart['items'][$exist]['quantity'] += $quantity;
 
+                    // Сообщаем что запись обновлена
                     $this->renderJson([
                         'result' => 'OK',
                         'status' => 'update',
                         'errors' => null,
-                        'prod' => $_SESSION['cart'],
+                        'prod' => $cart,
                     ]);
                 } else {
-                    $_SESSION['cart']['items'][] = [
+                    //иначе добавляем новый элемент в массив
+                    $cart['items'][] = [
                         'id' => $id,
                         'quantity' => $quantity,
                     ];
-
+                    //сообщаем что запись новая
                     $this->renderJson([
                         'result' => 'OK',
                         'status' => 'new',
                         'errors' => null,
-                        'prod' => $_SESSION['cart'],
+                        'prod' => $cart,
                     ]);
                 }
             } else {
-                // иначе просто добвляем в массив
-                $_SESSION['cart']['items'][] = [
+                // иначе если корзина ещё не создана, создаем и начинаем добавлять товары
+                $cart['items'][] = [
                     'id' => $id,
                     'quantity' => $quantity,
                 ];
 
+                //сообщаем что запись новая
                 $this->renderJson([
                     'result' => 'OK',
                     'status' => 'new',
                     'errors' => null,
-                    'prod' => $_SESSION['cart'],
+                    'prod' => $cart,
                 ]);
             }
-//            session_destroy();
-
         }
+        //сохраняем  результаты в сессию
+        $this->request->session('cart', $cart);
     }
 
     function renderJson($data) {

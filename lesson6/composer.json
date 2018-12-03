@@ -12,10 +12,7 @@
   "autoload": {
     "psr-4": {
       "app\\": "app/",
-      "core\\": "core/",
-      "classmap": [
-        "src/"
-      ]
+      "core\\": "core/"
     }
   },
   "require": {
