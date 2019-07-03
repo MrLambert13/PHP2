@@ -1,12 +1,12 @@
 {
-  "name": "manchenkov/geek-framework",
+  "name": "mrlambert13/geek-framework",
   "description": "Geekbrains PHP Level 2 - Example MVC app",
   "type": "project",
   "license": "MIT",
   "authors": [
     {
-      "name": "Artem Manchenkov",
-      "email": "artyom@manchenkoff.me"
+      "name": "Sergey Berdnikov",
+      "email": "Lam_13@mail.ru"
     }
   ],
   "autoload": {
